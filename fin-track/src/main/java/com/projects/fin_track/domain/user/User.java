@@ -1,5 +1,6 @@
 package com.projects.fin_track.domain.user;
 
+import com.projects.fin_track.domain.categoria.Categoria;
 import com.projects.fin_track.domain.conta.Conta;
 import com.projects.fin_track.domain.user.dto.UserRole;
 import jakarta.persistence.*;
@@ -47,6 +48,9 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Conta> contas;
+
+    @OneToMany(mappedBy = "user")
+    private List<Categoria> categorias;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
