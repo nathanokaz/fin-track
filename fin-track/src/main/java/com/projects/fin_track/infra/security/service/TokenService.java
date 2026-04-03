@@ -23,7 +23,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer("fin track api")
-                    .withSubject(user.getNome())
+                    .withSubject(user.getEmail())
                     .withExpiresAt(expiracao())
                     .sign(algorithm);
         } catch (JWTCreationException exception){

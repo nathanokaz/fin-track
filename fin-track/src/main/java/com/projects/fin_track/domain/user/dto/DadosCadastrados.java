@@ -6,12 +6,14 @@ import java.time.LocalDate;
 
 public record DadosCadastrados(
 
+        Integer id,
         String email,
         String nome,
-        LocalDate criadoEm) {
+        LocalDate criadoEm,
+        UserRole role) {
 
     public DadosCadastrados(User novoUser) {
-        this(novoUser.getEmail(), novoUser.getNome(), novoUser.getCriadoEm());
+        this(novoUser.getId(), novoUser.getEmail(), novoUser.getNome(), novoUser.getCriadoEm(), novoUser.getRole());
     }
 
 }

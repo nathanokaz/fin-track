@@ -42,7 +42,6 @@ public class AuthenticationService {
                 .nome(dados.nome())
                 .role(UserRole.USER)
                 .criadoEm(dataAtual)
-                .ativo(true)
                 .build();
         userRepository.save(novoUser);
         return novoUser;

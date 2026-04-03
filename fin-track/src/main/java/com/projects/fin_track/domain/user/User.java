@@ -5,6 +5,8 @@ import com.projects.fin_track.domain.conta.Conta;
 import com.projects.fin_track.domain.user.dto.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SoftDelete;
+import org.hibernate.annotations.SoftDeleteType;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +23,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@SoftDelete(columnName = "ativo", strategy = SoftDeleteType.ACTIVE)
 public class User implements UserDetails {
 
     @Id
@@ -42,9 +45,6 @@ public class User implements UserDetails {
 
     @Column(nullable = false, name = "criado_em")
     private LocalDate criadoEm;
-
-    @Column(nullable = false)
-    private boolean ativo;
 
     @OneToMany(mappedBy = "user")
     private List<Conta> contas;
