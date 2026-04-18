@@ -10,4 +10,5 @@ import lombok.Setter;
 public class ErrorResponse {
 
     private String mensagem;
+
 }

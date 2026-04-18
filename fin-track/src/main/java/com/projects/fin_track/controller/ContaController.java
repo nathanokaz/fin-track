@@ -50,12 +50,6 @@ public class ContaController {
         return ResponseEntity.ok().body(conta);
     }
 
-    @GetMapping("/transacoes/{id}")
-    public ResponseEntity<List<DetalhesTransacoes>> listarTransacoes(@PathVariable Integer id) {
-        var transacoes = contaService.listarTransacoes(id);
-        return ResponseEntity.ok().body(transacoes);
-    }
-
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarConta(@PathVariable Integer id) {
         contaService.exclusaoLogica(id);

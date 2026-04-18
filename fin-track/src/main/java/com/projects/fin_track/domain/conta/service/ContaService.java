@@ -84,11 +84,6 @@ public class ContaService {
         return new SaldoConta(conta);
     }
 
-    public List<DetalhesTransacoes> listarTransacoes(Integer id) {
-        List<Transacao> transacoes = transacaoRepository.findAllByContaOrigemId(id);
-        return transacoes.stream().map(transacao -> new DetalhesTransacoes(transacao)).toList();
-    }
-
     @Transactional
     public void exclusaoLogica(Integer id) {
         var conta = contaRepository.findByIdAndUserId(id, pegarUsuario().getId())

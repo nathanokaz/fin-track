@@ -49,4 +49,37 @@ public class GlobalExceptionHandler {
                 .build();
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
+
+    @ExceptionHandler(NaoHaSaldo.class)
+    public ResponseEntity<ErrorResponse> handleNaoHaSaldo(NaoHaSaldo exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .mensagem(exception.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
+    @ExceptionHandler(TransferenciaProibida.class)
+    public ResponseEntity<ErrorResponse> handleTransferenciaProibida(TransferenciaProibida exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .mensagem(exception.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    @ExceptionHandler(TransacaoNaoEncontrada.class)
+    public ResponseEntity<ErrorResponse> handleTransacaoNaoEncontrada(TransacaoNaoEncontrada exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .mensagem(exception.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(ValorTransacaoInvalido.class)
+    public ResponseEntity<ErrorResponse> handleValorTransacaoInvalido(ValorTransacaoInvalido exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .mensagem(exception.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
 }
