@@ -1,5 +1,6 @@
 package com.projects.fin_track.domain.transacao.service;
 
+import com.projects.fin_track.domain.categoria.repository.CategoriaRepository;
 import com.projects.fin_track.domain.conta.repository.ContaRepository;
 import com.projects.fin_track.domain.transacao.Transacao;
 import com.projects.fin_track.domain.transacao.dto.*;
@@ -23,10 +24,13 @@ public class TransacaoService {
     private final TransacaoRepository transacaoRepository;
     private final UserRepository userRepository;
     private final ContaRepository contaRepository;
+    private final CategoriaRepository categoriaRepository;
 
     @Transactional
     public DadosTransacaoCadastrada criarTransacao(DadosCadastroTransacao dados) {
         Transacao transacao = null;
+        var categoria = categoriaRepository.findByIdAndUserId(dados.categoriaId(), pegarUsuario().getId())
+                .orElseThrow(() -> new ContaNaoEncontrada("Categoria não encontrada"));
         if (dados.tipo() == TipoTransacao.TRANSFERENCIA) {
             if (dados.contaOrigemId() == null || dados.contaDestinoId() == null) {
                 throw new ContaNaoEncontrada("Conta origem ou destino não informada");
@@ -58,8 +62,7 @@ public class TransacaoService {
                     .descricao(dados.descricao())
                     .contaOrigem(contaOrigem)
                     .contaDestino(contaDestino)
-                    // colocar no dto
-                    .categoria(null)
+                    .categoria(categoria)
                     .build();
 
             transacaoRepository.save(transacao);
@@ -81,8 +84,7 @@ public class TransacaoService {
                     .descricao(dados.descricao())
                     .contaOrigem(null)
                     .contaDestino(contaDestino)
-                    // colocar no dto
-                    .categoria(null)
+                    .categoria(categoria)
                     .build();
             transacaoRepository.save(transacao);
         } else if (dados.tipo() == TipoTransacao.SAQUE) {
@@ -106,8 +108,7 @@ public class TransacaoService {
                     .descricao(dados.descricao())
                     .contaOrigem(contaOrigem)
                     .contaDestino(null)
-                    // colocar no dto
-                    .categoria(null)
+                    .categoria(categoria)
                     .build();
             transacaoRepository.save(transacao);
         } else {

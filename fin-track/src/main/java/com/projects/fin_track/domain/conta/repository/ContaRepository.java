@@ -14,5 +14,4 @@ public interface ContaRepository extends JpaRepository<Conta, Integer> {
 
     Optional<Conta> findByIdAndUserId(Integer id, Integer userId);
 
-    Optional<Conta> findByUserId(Integer user);
 }

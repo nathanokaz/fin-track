@@ -13,13 +13,13 @@ public record DadosTransacaoCadastrada(
         TipoTransacao tipo,
         LocalDateTime data,
         String descricao,
-        Categoria categoria,
+        Integer categoriaId,
         Integer contaOrigemId,
         Integer contaDestinoId){
 
     public DadosTransacaoCadastrada(Transacao transacao) {
         this(transacao.getId(), transacao.getValor(), transacao.getTipo(), transacao.getData(),
-                transacao.getDescricao(), transacao.getCategoria(),
+                transacao.getDescricao(), transacao.getCategoria().getId(),
                 transacao.getContaOrigem() != null ? transacao.getContaOrigem().getId() : null,
                 transacao.getContaDestino() != null ? transacao.getContaDestino().getId() : null);
     }

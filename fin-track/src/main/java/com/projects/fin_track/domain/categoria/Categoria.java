@@ -5,6 +5,8 @@ import com.projects.fin_track.domain.transacao.Transacao;
 import com.projects.fin_track.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SoftDelete;
+import org.hibernate.annotations.SoftDeleteType;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@SoftDelete(columnName = "ativo", strategy = SoftDeleteType.ACTIVE)
 public class Categoria {
 
     @Id

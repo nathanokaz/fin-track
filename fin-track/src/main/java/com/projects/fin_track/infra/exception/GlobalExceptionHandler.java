@@ -82,4 +82,20 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
+    @ExceptionHandler(CategoriaNaoEncontrada.class)
+    public ResponseEntity<ErrorResponse> handleCategoriaNaoEncontrada(CategoriaNaoEncontrada exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .mensagem(exception.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(NomeDaCategoriaJaExiste.class)
+    public ResponseEntity<ErrorResponse> handleNomeDaCategoriaJaExiste(NomeDaCategoriaJaExiste exception) {
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .mensagem(exception.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
 }

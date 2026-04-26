@@ -12,6 +12,8 @@ public record DadosCadastroTransacao(
         @NotNull
         TipoTransacao tipo,
 
+        Integer categoriaId,
+
         String descricao,
 
         Integer contaDestinoId,

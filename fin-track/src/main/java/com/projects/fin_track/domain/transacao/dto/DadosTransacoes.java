@@ -13,13 +13,14 @@ public record DadosTransacoes(
         TipoTransacao tipo,
         LocalDateTime data,
         String descricao,
-        Categoria categoria,
+        Integer categoriaId,
         Integer contaOrigemId,
         Integer contaDestinoId
 ){
     public DadosTransacoes(Transacao transacao) {
         this(transacao.getId(), transacao.getValor(), transacao.getTipo(), transacao.getData(),
-                transacao.getDescricao(), transacao.getCategoria(), transacao.getContaOrigem().getId(),
-                transacao.getContaDestino().getId());
+                transacao.getDescricao(), transacao.getCategoria() != null ? transacao.getCategoria().getId() : null,
+                transacao.getContaOrigem() != null ? transacao.getContaOrigem().getId() : null,
+                transacao.getContaDestino() != null ? transacao.getContaDestino().getId() : null);
     }
 }
