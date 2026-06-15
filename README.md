@@ -6,10 +6,6 @@
 
 Fin Track é uma API REST inspirada em sistemas bancários, desenvolvida com Java e Spring Boot, que simula operações financeiras entre contas, autenticação segura com JWT e gerenciamento de transações financeiras com controle de acesso por permissões.
 
-## 🚧 Status do Projeto
-
-Projeto em desenvolvimento.
-
 ## ✨ Funcionalidades Principais
 
 - Autenticação e autorização com JWT e Spring Security.
